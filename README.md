@@ -23,7 +23,7 @@ Mis proyectos personales y trabajos enfocados en resolver problemas comunes o si
 * **Firmware y Lógica de Operación:** La detección bidireccional (entradas/salidas) se procesa mediante una **Máquina de Estados Estructurada (Switch-Case)** que discrimina el orden de activación de los sensores fotoeléctricos. Cuenta con un algoritmo de *antirrebote (debounce)* por software para evitar falsos positivos. Adicionalmente, implementa una rutina de alerta si un sensor es obstruido por tiempo prolongado. El acceso a los datos almacenados desde la aplicación móvil está restringido mediante un firmware de validación por PIN de 4 dígitos.
 * **Aplicaciones y Alcances:** Control de aforo en transporte público (buses/metros), auditoría de tiendas retail y automatización industrial en líneas de producción.
 
-### 3. Enterprise Security & IoT Validator (`IoT-Enterprise-Validator`)
+### 3. Enterprise Security & IoT Validator (`Secure-Pass`)
 * **Descripción:** Dispositivo IoT para la validación de identidad y enlace organizacional en tiempo real conectado a un servidor centralizado.
 * **Arquitectura de Hardware:**
   * Procesador: ESP32 (Aprovechando su pila Wi-Fi nativa).
@@ -32,7 +32,7 @@ Mis proyectos personales y trabajos enfocados en resolver problemas comunes o si
 * **Firmware y Lógica de Operación:** El dispositivo actúa como un cliente IoT. Al leer una tarjeta, el ESP32 empaqueta el identificador único encriptado junto con un **ID único de dispositivo** (firmware que identifica la ubicación exacta del lector) en una trama con formato **JSON**. Esta estructura se transmite mediante peticiones de red hacia un servidor web personal para su validación en bases de datos empresariales.
 * **Aplicaciones y Alcances:** Sistemas de cronometraje y asistencia laboral, control de accesos corporativos multi-sede y gestión de membresías en la nube.
 
-### 4. Traffic Light Controller with Audio Accessibility (`Accessible-Traffic-Light`)
+### 4. Traffic Light Controller with Audio Accessibility (`Traffic-Light-Controller`)
 * **Descripción:** Controlador de semáforo urbano que integra una interfaz de potencia y un sistema de asistencia por voz para personas con discapacidad visual.
 * **Arquitectura de Hardware:**
   * Etapa de Potencia: Optoacopladores y TRIACs/Relés para el manejo de lámparas de semáforo (Verde, Amarillo, Rojo).
@@ -46,12 +46,12 @@ Mis proyectos personales y trabajos enfocados en resolver problemas comunes o si
 
 Los siguientes diseños corresponden a circuitos electrónicos analógicos y digitales simulados y validados en el entorno de software **Proteus VSM**.
 
-### 5. Acoustic Actuated Smart Switch (`Acoustic-Smart-Switch`)
+### 5. Acoustic Actuated Smart Switch (`Encendido-Apagado inteligente`)
 * **Descripción:** Interruptor automatizado por eventos sonoros de alta intensidad (aplausos o ruidos secos) para el control de iluminación residencial.
 * **Componentes Principales:** Contador de décadas CD4017, Micrófono de electreto (transductor), etapa de preamplificación de señal, Relé electromecánico y carga de CA (Bombilla).
 * **Lógica del Circuito:** El micrófono captura la onda sonora y un circuito de acondicionamiento transforma el pico de presión en un pulso digital de reloj (CLK). Este pulso se inyecta al integrado **CD4017**, el cual cambia su estado lógico de salida secuencialmente, conmutando la bobina del relé para abrir o cerrar el circuito de potencia de la luminaria.
 
-### 6. Motion Activated Timer Relay (`Motion-Activated-Timer`)
+### 6. Motion Activated Timer Relay (`Semáforo con integrado`)
 * **Descripción:** Sistema de temporización automática para iluminación eficiente basado en detección de movimiento físico.
 * **Componentes Principales:** Circuito Integrado Temporizador NE555, Sensor de Movimiento (PIR o interfaz equivalente simulada), capacitores de temporización RC, relé e indicador luminoso.
 * **Lógica del Circuito:** Al recibir un flanco de disparo proveniente del sensor de movimiento, el **NE555 configurado en modo monoestable** activa su salida (Output High), energizando el relé y encendiendo la bombilla. El tiempo de encendido está determinado estrictamente por la constante de tiempo $\tau = 1.1 \times R \times C$. El sistema corta el flujo de corriente automáticamente una vez transcurrido el tiempo configurado, optimizando el consumo energético.
