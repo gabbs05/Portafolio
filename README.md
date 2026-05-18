@@ -6,7 +6,8 @@ Mis proyectos personales y trabajos enfocados en resolver problemas comunes o si
 
 ### 1. Automated Gate Access Control System (`NFC-Access-Control-System`)
 * **Descripción:** Sistema automatizado para el control de acceso y apertura de portones mediante autenticación RFID/NFC y gestión de carrera por ultrasonido.
-* **Arquitectura de Hardware:** * SoC Principal: ESP32 (gestionando periféricos y lógica de control).
+* **Arquitectura de Hardware:**
+  * SoC Principal: ESP32 (gestionando periféricos y lógica de control).
   * Periférico RFID: MFRC522 conectado mediante protocolo SPI.
   * Sensores de Entorno: Sensor ultrasónico de distancia (HC-SR04 o similar).
   * Actuadores e Indicadores: Motor DC de arrastre, módulos de relés para inversión de giro, Buzzer piezoeléctrico y LEDs de estado.
@@ -15,7 +16,8 @@ Mis proyectos personales y trabajos enfocados en resolver problemas comunes o si
 
 ### 2. Smart Passenger & Object Counter (`Smart-Object-Counter`)
 * **Descripción:** Contador bidireccional inteligente de personas u objetos con conectividad inalámbrica, protección industrial y validación por PIN de seguridad.
-* **Arquitectura de Hardware:** * Sensores: Dos sensores infrarrojos fotoeléctricos industriales E18-D80NK (alcance de hasta 1 metro).
+* **Arquitectura de Hardware:**
+  * Sensores: Dos sensores infrarrojos fotoeléctricos industriales E18-D80NK (alcance de hasta 1 metro).
   * Interfaz de Potencia y Protección: Convertidor DC-DC Buck LM2596 (estabilización de voltaje) y **Diodo de Supresión de Voltaje Transitorio (TVS) de 24V** para la supresión de picos y ruido eléctrico en la alimentación.
   * Comunicación e Interfaz: Módulo Bluetooth (o integrado del SoC) y Buzzer acústico de notificación.
 * **Firmware y Lógica de Operación:** La detección bidireccional (entradas/salidas) se procesa mediante una **Máquina de Estados Estructurada (Switch-Case)** que discrimina el orden de activación de los sensores fotoeléctricos. Cuenta con un algoritmo de *antirrebote (debounce)* por software para evitar falsos positivos. Adicionalmente, implementa una rutina de alerta si un sensor es obstruido por tiempo prolongado. El acceso a los datos almacenados desde la aplicación móvil está restringido mediante un firmware de validación por PIN de 4 dígitos.
