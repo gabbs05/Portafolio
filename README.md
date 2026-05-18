@@ -1,3 +1,63 @@
+# Portfolio
+My personal projects and work focused on solving common problems or just for fun.
+--------------------------------------------------------------------------------------------------------
+
+## 🛠️ Embedded Systems & IoT Projects
+
+### 1. Automated Gate Access Control System (`NFC-Access-Control-System`)
+* **Description:** An automated system designed for gate control and access management through RFID/NFC authentication and distance-based travel control using ultrasound.
+* **Hardware Architecture:**
+  * Main SoC: ESP32 (managing control logic and peripherals).
+  * RFID Peripheral: MFRC522 interfaced via SPI protocol.
+  * Environment Sensors: Ultrasonic distance sensor (HC-SR04 or equivalent).
+  * Actuators & Indicators: DC drive motor, relay modules for H-bridge direction control, piezoelectric buzzer, and status LEDs.
+* **Firmware & Operating Logic:** The system operates under a dual-mode architecture (ON/OFF). Upon reading a card with an authorized UID, the system enters **Automatic Mode**: the ultrasonic sensor dynamically monitors the vehicle or object's position to control the gate motor's opening and closing cycles via relays. Swiping the authorized card again safely interrupts the cycle and shifts the system back to Suspended Mode.
+* **Applications & Scope:** Residential automation, smart parking lots, and secure perimeter access control.
+
+### 2. Smart Passenger & Object Counter (`Smart-Object-Counter`)
+* **Description:** A smart bidirectional object/passenger counter featuring wireless connectivity, industrial-grade power protection, and PIN-secured data access.
+* **Hardware Architecture:**
+  * Sensors: Dual industrial E18-D80NK photoelectric infrared sensors (up to 1-meter range).
+  * Power Stage & Protection: LM2596 DC-DC Buck converter for voltage stabilization, and a **24V Transient Voltage Suppressor (TVS) Diode** to suppress power-line voltage spikes and electrical noise.
+  * Communication & Interface: Bluetooth module (native SoC or external) and an acoustic notification buzzer.
+* **Firmware & Operating Logic:** Bidirectional detection (in/out entry logging) is processed using a structured **State Machine (Switch-Case)** that discriminates the sequential activation order of the photoelectric sensors. It implements a software-based debounce algorithm to prevent false positives and includes a timeout alert routine if a sensor is obstructed for too long. Access to the stored counts via the mobile application is protected by a 4-digit security PIN validation firmware.
+* **Applications & Scope:** Passenger counting for public transit (buses/subways), retail foot-traffic auditing, and industrial production line counting.
+
+### 3. Enterprise Security & IoT Validator (`Secure-Pass`)
+* **Description:** An IoT edge device for real-time identity validation and organizational mapping linked to a centralized database server.
+* **Hardware Architecture:**
+  * Processor: ESP32 (utilizing its native Wi-Fi stack).
+  * RFID/NFC Reader: MFRC522 interconnected via **SPI** communication bus.
+  * Notifications: LED indicator matrix and confirmation buzzer.
+* **Firmware & Operating Logic:** The device acts as an IoT network client. When an RFID tag is scanned, the ESP32 encrypts the unique card UID, packages it alongside a **unique device ID** (firmware hardcoded to pinpoint the physical location of the scanner), and formats it into a **JSON** payload. This structure is transmitted via HTTP requests to a personal web server for validation against enterprise databases.
+* **Applications & Scope:** Workforce time and attendance tracking, multi-branch corporate access control, and cloud-based membership management.
+
+### 4. Traffic Light Controller with Audio Accessibility (`Traffic-Light-Controller`)
+* **Description:** An urban traffic light controller integrating a power stage and a pre-recorded voice assistance system for visually impaired pedestrians.
+* **Hardware Architecture:**
+  * Power Stage: Optocouplers and TRIACs/Relays for switching traffic lamps (Green, Yellow, Red).
+  * Audio Module: Dedicated voice playback module (such as DFPlayer or equivalent) and a high-fidelity speaker.
+* **Firmware & Operating Logic:** The firmware executes a cyclic traffic synchronization sequence based on structured timing intervals. When switching the high-voltage power lines for the lights, the microcontroller triggers the audio module to play clear voice commands ("Walk" for green, "Don't walk" or "Stop" for red), ensuring urban infrastructure inclusivity.
+* **Applications & Scope:** Smart city planning, accessible urban environments, and pedestrian safety improvement.
+
+---
+
+## 📐 Proteus Simulation & Circuit Designs
+
+The following designs represent analog and digital electronic circuits fully simulated and validated within the **Proteus VSM** software environment.
+
+### 5. Acoustic Actuated Smart Switch (`Encendido-Apagado inteligente`)
+* **Description:** An automated switch triggered by high-intensity acoustic events (such as handclaps or sharp noises) for residential lighting control.
+* **Key Components:** CD4017 decade counter, electret microphone (transducer), signal pre-amplification stage, electromechanical relay, and AC load (lightbulb).
+* **Circuit Logic:** The microphone captures sound waves, and a signal conditioning circuit converts the pressure peak into a digital clock pulse (CLK). This pulse is fed to the **CD4017** IC, which sequentially toggles its logic output state, switching the relay coil to open or close the lightbulb's mains power connection.
+
+### 6. Motion Activated Timer Relay (`Semáforo con integrado`)
+* **Description:** An automatic timing system for energy-efficient lighting based on physical motion detection.
+* **Key Components:** NE555 timer integrated circuit, PIR motion sensor (or equivalent simulated interface), RC timing capacitors, relay, and light indicator.
+* **Circuit Logic:** Upon receiving a trigger edge from the motion sensor, the **NE555 configured in monostable mode** drives its output HIGH, energizing the relay and turning on the lightbulb. The activation duration is strictly determined by the RC time constant formula: $\tau = 1.1 \times R \times C$. The system automatically cuts off current flow once the configured time elapses, optimizing power consumption.
+
+---
+
 # Portafolio
 Mis proyectos personales y trabajos enfocados en resolver problemas comunes o simplemente por diversión
 --------------------------------------------------------------------------------------------------------
